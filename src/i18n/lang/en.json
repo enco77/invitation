@@ -1,0 +1,13 @@
+{
+  "siteIntro": "",
+  "eventDate": "Дата торжества",
+  "invitationGreeting": "Dear",
+  "invitationIntro": "Вас сердечно приглашаем",
+  "invitationContent": "Наша радость станет еще полнее благодаря вашему присутствию в наш особенный день.",
+  "invitationContentTextAlign": "left",
+  "invitationOutro": "Мы с нетерпением ждем встречи с вами.",
+  "btnAddToMyCalendar": "Add to my calendar",
+  "guestCheckin": {
+    "pleaseScanInvitation": "Please scan your invitation.."
+  }
+}
