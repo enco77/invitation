@@ -38,19 +38,17 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/invitation:latest
             ${{ secrets.DOCKER_USERNAME }}/invitation:${{ github.run_number }}
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: build
+  deploy:
+    runs-on: ubuntu-bekzod
+    needs: build
 
-  #   steps:
-  #     - name: Deploy to Production Server
-  #       uses: appleboy/ssh-action@v0.1.3
-  #       with:
-  #         host: ${{ secrets.PROD_SERVER }}
-  #         username: ${{ secrets.SSH_USERNAME }}
-  #         key: ${{ secrets.SSH_PRIVATE_KEY }}
-  #         env:
-  #           DOCKER_IMAGE_TAG: ${{ secrets.DOCKER_USERNAME }}/myapp:latest-production
-  #         script: |
-  #           docker pull $DOCKER_IMAGE_TAG
-  #           docker service update --image $DOCKER_IMAGE_TAG myapp_service_production
+    steps:
+      - name: Deploy to Production Server
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.PROD_SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/invitation:${{ github.run_number }}
+            docker service update --image ${{ secrets.DOCKER_USERNAME }}/invitation:${{ github.run_number }} invitation_wedding_invitation
